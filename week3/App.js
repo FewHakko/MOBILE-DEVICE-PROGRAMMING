@@ -11,8 +11,8 @@ import { StyleSheet, Text, View } from 'react-native';
 export default function App() {
 
   return (
-    // <Lab21 />
-    <Lab22 />
+    <Lab21 />
+    // <Lab22 />
   );
 }
 

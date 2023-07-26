@@ -1,47 +1,51 @@
-import { StatusBar } from 'expo-status-bar';
-import React, {useState} from 'react'
-import { StyleSheet, Text, View, Image, Button, TextInput, FlatList } from 'react-native';
+import {
+    View,
+    Text,
+    StyleSheet,
+    TextInput,
+    Button,
+    FlatList,
+} from "react-native";
+import React, { useState } from "react";
 
-export default function Lab() {
-    const [isText, setIsText] = useState()
-    const onPressLearnMore = () => { console.log(isText) }
-    const [word, setWord] = useState('');
+const Home = () => {
+    const [word, setWord] = useState("");
     const [wordList, setWordList] = useState([]);
 
     const handleAddWord = () => {
-        if (word.trim() !== '') {
-            setWordList((prevList) => [
-                ...prevList,
-                { word: word.trim() },
-            ]);
-            setWord('');
+        if (word.trim() !== "") {
+            setWordList((prevList) => [...prevList, { word: word.trim() }]);
+            setWord("");
         }
     };
     const renderItem = ({ item }) => (
         <Text style={{ fontSize: 18 }}>{item.word}</Text>
     );
-
     return (
-        <View>
+        <View style={styles.container}>
             <Text style={styles.header}>สมุดบันทึก</Text>
-            <TextInput style={styles.input} placeholder="จะใส่อะไรก็ใส่" value={word}
-                onChangeText={(text) => setWord(text)} />
-            <Text style={styles.mt}> {isText}</Text>
+            <TextInput
+                style={styles.input}
+                placeholder="จะใส่อะไรก็ใส่"
+                value={word}
+                onChangeText={(text) => setWord(text)}
+            />
             <Button
                 title="กดซะถ้าอยากเก็บข้อมูล"
                 color="#841584"
                 onPress={handleAddWord}
-
             />
-            <FlatList
-                data={wordList}
-                renderItem={renderItem}
-            />
+            <FlatList data={wordList} renderItem={renderItem} />
         </View>
     );
-}
+};
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: "#fff",
+        alignItems: "center",
+    },
     header: {
         paddingTop: 30,
         fontSize: 30,
@@ -55,5 +59,7 @@ const styles = StyleSheet.create({
     },
     mt: {
         marginTop: 20,
-    }
+    },
 });
+
+export default Home;
